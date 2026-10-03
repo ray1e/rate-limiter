@@ -1,4 +1,4 @@
-const TARGET_BASE_URL = 'https://jsonplaceholder.typicode.com';
+const TARGET_BASE_URL = "https://jsonplaceholder.typicode.com";
 
 export const proxy = () => async (req, res) => {
   const targetUrl = `${TARGET_BASE_URL}${req.originalUrl}`;
@@ -11,12 +11,10 @@ export const proxy = () => async (req, res) => {
         Accept: "application/json",
       },
     });
-
     const data = await response.json();
 
     // 2. Return the external API's response directly to your client
     res.status(response.status).json(data);
-
   } catch (err) {
     res.status(502).json({ error: "Bad Gateway - Failed to reach target API" });
   }
